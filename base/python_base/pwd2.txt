@@ -1,0 +1,8 @@
+www.baidu1.com:2222
+www.baidu2.com:33333
+www.baidu3.com:12345
+www.baidu4.com:12345
+www.baidu5.com:12345
+www.baidu6.com:12345
+www.baidu7.com:12345
+www.baidu8.com:12345
