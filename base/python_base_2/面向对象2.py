@@ -106,6 +106,8 @@ sonB.car()  # 老王父亲的车
 # 子类的方法跟父类的方法名相同时，会优先调用子类的方法
 
 # 重写父类方法，调用父类方法
+
+
 class Fa(object):
     def __init__(self, name):
         self.name = name
@@ -134,3 +136,84 @@ print(son.getName())  # 刘德华
 
 
 # 多态：定义时的类型跟运行的时候不一样
+# python '鸭子类型'
+
+class F1(object):
+    def show(self):
+        print('---F1----')
+
+
+class S1(F1):
+    def show(self):
+        print('----s1---')
+
+
+class S2(F1):
+    def show(self):
+        print('-----s2----')
+
+# 多态函数 因为python的函数参数不需要指定类型
+
+
+def Func(obj):
+    print(obj.show())
+
+
+s1 = S1()
+Func(s1)  # ----s1----
+
+s2 = S2()
+Func(s2)  # -----s2----
+
+
+# 类属性、实例属性
+# 类对象所拥有的属性叫类属性。实例属性拥有的属性叫做实例属性
+
+class Peo(object):
+    name = 'make'  # 公有的类属性
+    __age = 23  # 私有的类属性
+    moneny = 100
+
+
+p = Peo()
+
+p.moneny = 200  # 实例属性 与类同名时会覆盖类属性
+print(p.moneny)  # 200
+print(p.name)  # make
+# print(p.__age) # 私有类属性实例外界无法访问
+print(Peo.name)  # make
+# print(Peo.__age)  # 私有类属性类对象也外界无法访问
+
+
+# 类方法和静态方法
+# 类方法用装饰器@classmethod来装饰标识其为类方法
+class Peo2(object):
+    country = 'china'
+
+    # 类方法用classmethod来进行装饰
+    # 对于类方法第一个参数为类对象，一般用cls作为参数
+    @classmethod
+    def getCountry(cls):
+        return cls.country
+
+
+p2 = Peo2()
+print(p2.getCountry())  # china 实例调用类方法
+print(Peo2.getCountry())  # china 类对象调用类方法
+
+print('--------------')
+# 静态方法
+# 通过@staticmethod来进行修饰，不需要多定义参数
+
+
+class Peo3(object):
+    country = 'china'
+
+    @staticmethod  # 静态方法
+    def getCountry():
+        return Peo3.country  # 引用类属性时必须通过类对象引用
+
+
+peo3 = Peo3()
+print(peo3.getCountry())  # 实例对象调用
+print(Peo3.getCountry())  # 类对象调用
