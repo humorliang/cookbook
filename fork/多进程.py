@@ -11,4 +11,4 @@ if pid == 0:
 else:
     print('nohaha')
 
- 
+input('请输入：')
